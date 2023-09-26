@@ -90,7 +90,7 @@ const Orders = ({ setActivePage }) => {
               // Display orders here
               <div
                 className={`flex flex-col sm:flex-row items-start justify-between w-full sm:w-[90%] mx-auto border-2 
-              border-green-200 my-4 p-3 rounded-xl shadow-lg cursor-pointer hover:scale-[101%] transform ease-in-out`}
+               border-green-200 my-4 p-3 rounded-xl shadow-lg cursor-pointer hover:scale-[101%] transform ease-in-out`}
                 key={index}
                 onClick={() => {
                   handleOrderClick(order);
@@ -98,15 +98,14 @@ const Orders = ({ setActivePage }) => {
                 }}
               >
                 <div className="flex flex-col items-start">
-                  <h1 className="text-[20px] font-bold">Order ID: {order._id} </h1>
-                  <span className="text-[18px]"> {order.order_name} </span>
+                  <h1 className="text-[14px] lg:text-[20px] font-bold">Order ID: {order._id} </h1>
+                  <span className="text-[14px] lg:text-[18px]"> {order.order_name} </span>
                   <span> {order.table} </span>
                 </div>
-                <div className="flex flex-col items-end">
-                  <h1 className="text-[20px] font-bold"> {order.order_price}₹ </h1>
-                  <span> {new Date(order.createdAt).toLocaleString()} </span>
-
-                  <span className="bg-blue-100 p-2 rounded-xl"> {order.delivery_status} </span>
+                <div className="flex flex-col items-end ml-auto sm:ml-0">
+                  <h1 className="text-[14px] lg:text-[20px] font-bold"> {order.order_price}₹ </h1>
+                  <span className="text-[14px] lg:text-[20px]"> {new Date(order.createdAt).toLocaleString()} </span>
+                  <span className="bg-blue-100 p-2 rounded-xl mt-2 sm:mt-0"> {order.delivery_status} </span>
                 </div>
               </div>
             ) : null
