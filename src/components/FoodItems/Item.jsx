@@ -32,6 +32,7 @@ const Item = ({ name, desc, images, oldPrice, newPrice, id, item, state, dispatc
     const fetchPincodes = async () => {
       const response = await fetch("https://mosho.onrender.com/api/pincode");
       const data = await response.json();
+      console.log("data", data);
       setpincodeDB(data);
     };
     fetchPincodes();
@@ -72,7 +73,7 @@ const Item = ({ name, desc, images, oldPrice, newPrice, id, item, state, dispatc
                 {/* <label htmlFor="pincode">Check Delivery Availability</label> */}
                 <input onChange={(e) => onChangeHandler(e)} value={pincode} required autoComplete="true" type="number" placeholder="Enter your pincode" className="pincode" id="pincode" name="pincode" />
 
-                {pincodeDB.includes(parseInt(pincode)) ? pincode.length > 5 && <p style={{ color: "green" }}>Delivery Available</p> : pincode.length > 5 && <p style={{ color: "orangered" }}>Sorry! Delivery services is Not Available at your location.</p>}
+                {pincodeDB.includes(pincode) ? pincode.length > 5 && <p style={{ color: "green" }}>Delivery Available</p> : pincode.length > 5 && <p style={{ color: "orangered" }}>Sorry! Delivery services is Not Available at your location.</p>}
 
                 <p>{Message}</p>
               </div>
@@ -97,7 +98,7 @@ const Item = ({ name, desc, images, oldPrice, newPrice, id, item, state, dispatc
                   <div
                     className="product-page-add-to-cart"
                     onClick={() =>
-                      pincode.length > 5 && pincodeDB.includes(parseInt(pincode))
+                      pincode.length > 5 && pincodeDB.includes(pincode)
                         ? localStorage.getItem("token")
                           ? dispatch({
                               type: "ADD_TO_CART",
