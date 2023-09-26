@@ -245,7 +245,7 @@ const Cart = ({ toggleCart, MenuDB, state, dispatch, cart }) => {
       description: "Test RazorPay",
       image: "./assets/logo.png",
       order_id: order.id,
-      callback_url: "https://app-themosho.netlify.app/paymentverification",
+      callback_url: "https://mosho.onrender.com/paymentverification",
       prefill: {
         name: localStorage.getItem("username"),
         email: "rehan@example.com",
