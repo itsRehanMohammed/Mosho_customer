@@ -33,9 +33,7 @@ const Slider = () => {
   ];
   // useEffect(() => {
   setTimeout(() => {
-    setimgIndex((imgIndex) =>
-      imgIndex < allSlides.length - 1 ? imgIndex + 1 : 0
-    );
+    setimgIndex((imgIndex) => (imgIndex < allSlides.length - 1 ? imgIndex + 1 : 0));
   }, 4000);
   // }, []);
 
@@ -57,17 +55,12 @@ const Slider = () => {
               return (
                 <div className="slide-wrapper" key={item.id}>
                   <div className="slider-img">
-                    <img
-                      src={allSlides[imgIndex].img}
-                      alt={allSlides[imgIndex].head}
-                    />
+                    <img src={allSlides[imgIndex].img} alt={allSlides[imgIndex].head} />
                   </div>
                   <div className="slider-info">
                     <h1>{allSlides[imgIndex].head}</h1>
                     <p>{allSlides[imgIndex].desp}</p>
-                    {allSlides[imgIndex].desp1 && (
-                      <p>{allSlides[imgIndex].desp1}</p>
-                    )}
+                    {allSlides[imgIndex].desp1 && <p>{allSlides[imgIndex].desp1}</p>}
                     <Link to="menu">
                       <button> Get it Now</button>
                     </Link>
@@ -79,13 +72,7 @@ const Slider = () => {
         </div>
         <div className="dots-container">
           {allSlides.map((item, itemIndex) => {
-            return (
-              <div
-                key={item.id}
-                className={imgIndex === itemIndex ? "dot active-dot" : "dot"}
-                onClick={() => goToSlide(itemIndex)}
-              ></div>
-            );
+            return <div key={item.id} className={imgIndex === itemIndex ? "dot active-dot" : "dot"} onClick={() => goToSlide(itemIndex)}></div>;
           })}
         </div>
       </div>

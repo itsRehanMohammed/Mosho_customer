@@ -29,7 +29,7 @@ const Card = ({ item }) => {
                 color: "#000",
               }}
             >
-              ${item.price} Price{" "}
+              ₹{item.price} Price{" "}
             </p>
             <p
               style={{

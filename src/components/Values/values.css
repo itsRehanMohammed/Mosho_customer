@@ -51,6 +51,6 @@
     width: 100vw;
   }
   .values-wrapper {
-    flex-wrap: wrap;
+    flex-direction: column;
   }
 }

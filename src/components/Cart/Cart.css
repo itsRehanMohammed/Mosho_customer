@@ -10,6 +10,7 @@
   border-radius: 10px;
   z-index: 999;
 }
+
 .cart-header {
   width: 100%;
   display: flex;
@@ -222,6 +223,21 @@
 .order_card img {
   height: 50px;
   width: 50px;
+}
+.modal-content {
+  width: 100%;
+  max-width: 700px; /* Adjust the maximum width as needed */
+  padding: 20px;
+  background-color: #fff;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+
+/* Media query for screens with a maximum width of 600px */
+@media only screen and (max-width: 600px) {
+  .modal-content {
+    max-width: 100%;
+  }
 }
 @media only screen and (max-width: 786px) {
   .cart-section {

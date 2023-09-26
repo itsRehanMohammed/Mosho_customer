@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 const OrderDetails = ({ selectedOrder }) => {
   return (
-    <div className="h-screen sm:w-[40%] border rounded-lg shadow-lg -my-4 sm:ml-5">
+    <div className="h-screen sm:w-[40%] border rounded-lg shadow-lg -my-4 sm:ml-5 ">
       <h1 className="text-[30px] font-bold text-center mb-2">ORDER SUMMARY</h1>
       {selectedOrder && (
         <div className="px-4">
@@ -80,7 +80,7 @@ const Orders = ({ setActivePage }) => {
     setSelectedOrder(order);
   };
   return (
-    <div className="container my-5 flex flex-col sm:flex-row sm:w-full">
+    <div className="container my-12 flex flex-col sm:flex-row sm:w-full lg:my-5">
       <div className="w-[90%] mx-auto">
         <h1 className="text-[35px] font-bold text-center mb-5">Orders</h1>
 
@@ -116,7 +116,7 @@ const Orders = ({ setActivePage }) => {
             className="flex flex-col items-center justify-between w-[90%] mx-auto 
                 my-4 p-3 text-lg "
           >
-            <h2>Sad To Inform You That, You've Not Ordered Any Meal Yet</h2>
+            <h2 className="sm:text-[18px]">Sad To Inform You That, You've Not Ordered Any Meal Yet</h2>
             <h4>
               Not to worry!{" "}
               <Link style={{ color: "#047aed" }} to={"/menu"}>
