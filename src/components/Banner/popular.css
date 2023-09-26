@@ -1,0 +1,35 @@
+.popular,
+.recently {
+  width: 85vw;
+  margin: 30px auto;
+}
+.popular-head,
+.recently-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+.see-all-items a {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+.popular-items_wrapper,
+.recently-items_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  /* width: 70vw; */
+}
+
+@media only screen and (max-width: 800px) {
+  .popular,
+  .recently {
+    width: 95vw;
+    margin: 30px 10px;
+  }
+  .popular-items_wrapper,
+  .recently-items_wrapper {
+    flex-wrap: wrap;
+  }
+}

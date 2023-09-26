@@ -1,0 +1,273 @@
+.card {
+  background-color: #fff;
+  /* box-shadow: 2px 5px 10px rgba(0, 31, 109, 0.726); */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  border-radius: 10px;
+  margin: 10px;
+  /* margin-top: 40px; */
+  width: 308px;
+  height: 380px;
+  max-width: 300px;
+  max-height: 400px;
+  position: relative;
+  padding-bottom: 10px;
+}
+.card:hover {
+  /* transform: translateY(-5px); */
+  /* scale: 1.01; */
+  /* transition: all 0.3s ease; */
+}
+.card-img {
+  width: 100%;
+  height: 240px;
+  position: relative;
+}
+.card-img img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition: all 700ms ease;
+  border-radius: 10px 10px 0px 0px;
+  z-index: 0;
+}
+.img {
+  z-index: 0;
+}
+.img:hover,
+.img:focus {
+  z-index: 0;
+}
+.card-name {
+  padding: 10px;
+}
+.link {
+  color: #000;
+  font-weight: 700;
+}
+.link:hover {
+  color: var(--primary-color);
+}
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card_price {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 12px;
+}
+.card_price p {
+  font-weight: 500;
+  color: #555;
+}
+.card_price span {
+  position: relative;
+  top: -5px;
+}
+.btn {
+  display: inline-block;
+  padding: 10px 30px;
+  background-color: var(--secondary-color);
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  border: 1.1px solid #000;
+  border-radius: 5px;
+}
+.delete_edit_wrapper {
+  padding: 0px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  margin-top: 10px;
+}
+.edit,
+.delete {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.delete {
+  color: red;
+}
+.edit:hover,
+.delete:hover {
+  background-color: var(--secondary-color);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.delete_course_modal {
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 8px;
+  position: fixed;
+  top: 40%;
+  left: 40%;
+  width: 400px;
+  height: 200px;
+  text-align: center;
+  padding: 20px 10px;
+  display: none;
+  z-index: 9999999;
+}
+.edit_course_modal {
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  border-radius: 8px;
+  position: fixed;
+  top: 5%;
+  left: 30%;
+  width: 400px;
+  /* height: ; */
+  text-align: center;
+  padding: 20px 10px;
+  display: none;
+  z-index: 9999999;
+  overflow-y: scroll;
+}
+.delete_course_modal_active,
+.edit_course_modal_active {
+  display: block;
+  z-index: 9999999;
+}
+.delete_course_modal p,
+.edit_course_modal p {
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-bottom: 10px;
+  padding: 20px;
+}
+.delete_course_modal button,
+.edit_course_modal button {
+  padding: 10px 20px;
+  color: #fff;
+  background-color: var(--primary-color);
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+}
+.delete_course_modal button:hover,
+.edit_course_modal button:hover {
+  background-color: var(--hover-effect);
+}
+
+.add_new_course_form_wrapper {
+  background-color: #fff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: 10px;
+  width: 40rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px 0px;
+}
+
+.form_head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form {
+  width: 80%;
+  margin: 0px auto;
+}
+
+.course_id,
+.course_name,
+.category,
+.image_link,
+.duration,
+.price,
+.description,
+.who_should_learn,
+.description_2,
+.description_3,
+.tecnologies_covered_images_link,
+.certificate_image_link,
+.rating,
+.meeting_link,
+.recording_link,
+.review,
+.syllabus_link,
+.popular_role,
+.we_provides,
+.button {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.input-id,
+.input-name,
+.input-category,
+.input-image,
+.input-duration,
+.input-price,
+.input-description,
+.input-who,
+.input-description-2,
+.input-description-3,
+.input-tech,
+.input-certificate,
+.input-rating,
+.input-meeting,
+.input-recording,
+.input-review,
+.input-syllabus,
+.input-role,
+.input-provides {
+  width: 100%;
+}
+
+.input-button {
+  background-color: var(--primary-color);
+  padding: 10px 30px;
+  width: 100%;
+  border-radius: 6px;
+  color: #fff;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.copyright {
+  margin-top: 30px;
+  margin-bottom: 12px;
+}
+
+.copyright p {
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 800px) {
+  .delete_course_modal,
+  .edit_course_modal {
+    left: 13%;
+    width: 280px;
+    height: 220px;
+    padding: 20px 10px;
+  }
+  .card {
+    margin: 16px 0px;
+    width: 98vw;
+    max-width: 98vw;
+    position: relative;
+    padding-bottom: 10px;
+  }
+  .card-img {
+    height: 210px;
+  }
+}
+
+@media only screen and (max-width: 540px) {
+  .corporate {
+    width: 100vw;
+  }
+}

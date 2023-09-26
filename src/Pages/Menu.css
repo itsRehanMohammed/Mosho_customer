@@ -1,0 +1,29 @@
+.Menu {
+  width: 80vw;
+  margin: 40px auto;
+}
+.Menu h1 {
+  text-align: center;
+}
+.Menu h1 span {
+  color: var(--primary-color);
+}
+.Menu-page-wrapper {
+  display: flex;
+}
+.Menu-wrapper {
+  flex: 4;
+  margin: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@media only screen and (max-width: 800px) {
+  .Menu {
+    width: 100vw;
+  }
+  .Menu-page-wrapper {
+    flex-direction: column;
+  }
+}
