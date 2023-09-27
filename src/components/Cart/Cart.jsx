@@ -11,7 +11,7 @@ import Button from "@mui/material/Button";
 import { Audio } from "react-loader-spinner";
 import Modal from "@mui/material/Modal";
 import { Link, useLocation } from "react-router-dom";
-
+import { toast } from "react-toastify";
 import "./Cart.css";
 const style = {
   position: "absolute",
@@ -28,7 +28,13 @@ const style = {
 
 const Cart = ({ toggleCart, MenuDB, state, dispatch, cart }) => {
   const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    if (localStorage.getItem("restaurantAvailable") === "true") {
+      setOpen(true);
+    } else {
+      toast.error("Sorry! Restaurant is closed now");
+    }
+  };
   const handleClose = () => setOpen(false);
   function BasicModal() {
     const [address, setAddress] = useState({
@@ -41,14 +47,22 @@ const Cart = ({ toggleCart, MenuDB, state, dispatch, cart }) => {
       landmark: "",
     });
     const [Spinner, setSpinner] = useState(false);
-    const [PreviewAddressModal, setPreviewAddressModal] = useState(JSON.parse(localStorage.getItem("address")) ? true : false);
+    const [PreviewAddressModal, setPreviewAddressModal] = useState(
+      JSON.parse(localStorage.getItem("address")) ? true : false
+    );
 
     const onChangeHandler = (e) => {
       setAddress({ ...address, [e.target.name]: e.target.value });
     };
     const handleAddress = (event) => {
       event.preventDefault();
-      const updatedFullAddress = address.locality + (address.landmark ? " near " + address.landmark : "") + " " + address.city + "-" + address.pincode;
+      const updatedFullAddress =
+        address.locality +
+        (address.landmark ? " near " + address.landmark : "") +
+        " " +
+        address.city +
+        "-" +
+        address.pincode;
       setAddress({ ...address, fullAddress: updatedFullAddress });
 
       setSpinner(true);
@@ -62,15 +76,40 @@ const Cart = ({ toggleCart, MenuDB, state, dispatch, cart }) => {
 
     return (
       <div>
-        <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+        <Modal
+          open={open}
+          onClose={handleClose}
+          aria-labelledby="modal-modal-title"
+          aria-describedby="modal-modal-description"
+        >
           {Spinner ? (
-            <Box component="form" sx={style} noValidate autoComplete="off" className="modal-content">
+            <Box
+              component="form"
+              sx={style}
+              noValidate
+              autoComplete="off"
+              className="modal-content"
+            >
               <div className="spinner">
-                <Audio height="80" width="80" radius="9" color="#ff492f" ariaLabel="three-dots-loading" wrapperStyle wrapperClass />
+                <Audio
+                  height="80"
+                  width="80"
+                  radius="9"
+                  color="#ff492f"
+                  ariaLabel="three-dots-loading"
+                  wrapperStyle
+                  wrapperClass
+                />
               </div>
             </Box>
           ) : PreviewAddressModal ? (
-            <Box component="form" sx={style} noValidate autoComplete="off" className="modal-content">
+            <Box
+              component="form"
+              sx={style}
+              noValidate
+              autoComplete="off"
+              className="modal-content"
+            >
               <div className="address_wrapper">
                 <h2>Confirm Details</h2>
                 <div className="orders_wrapper">
@@ -88,10 +127,13 @@ const Cart = ({ toggleCart, MenuDB, state, dispatch, cart }) => {
                     );
                   })}
                 </div>
-                <h3 style={{ textAlign: "end", marginTop: "14px" }}>Total - ₹{subTotal}</h3>
+                <h3 style={{ textAlign: "end", marginTop: "14px" }}>
+                  Total - ₹{subTotal}
+                </h3>
                 <div>
                   <p>
-                    {JSON.parse(localStorage.getItem("contactInfo")).name} - {JSON.parse(localStorage.getItem("contactInfo")).phoneNo}
+                    {JSON.parse(localStorage.getItem("contactInfo")).name} -{" "}
+                    {JSON.parse(localStorage.getItem("contactInfo")).phoneNo}
                   </p>
                   <p>{JSON.parse(localStorage.getItem("address"))}</p>
                 </div>
@@ -113,15 +155,69 @@ const Cart = ({ toggleCart, MenuDB, state, dispatch, cart }) => {
               </div>
             </Box>
           ) : (
-            <Box onSubmit={handleAddress} component="form" sx={style} noValidate autoComplete="off" className="modal-content">
+            <Box
+              onSubmit={handleAddress}
+              component="form"
+              sx={style}
+              noValidate
+              autoComplete="off"
+              className="modal-content"
+            >
               <div className="address_wrapper">
                 <h2>Enter Your Address</h2>
-                <TextField onChange={onChangeHandler} value={address.name} name="name" id="outlined-required" label="Name" placeholder="John doe" />
-                <TextField onChange={onChangeHandler} value={address.locality} name="locality" required id="outlined-required" label="Locality" placeholder="sector 10, xyz building vashi" />
-                <TextField onChange={onChangeHandler} value={address.city} name="city" required id="outlined-required" label="City" placeholder="Navi Mumbai" />
-                <TextField onChange={onChangeHandler} value={address.phoneNo} name="phoneNo" required id="outlined-required" label="Phone no." placeholder="99999 99999" type="number" />
-                <TextField onChange={onChangeHandler} value={address.pincode} name="pincode" required id="outlined-required" label="Pincode" placeholder="400088" type="number" />
-                <TextField onChange={onChangeHandler} value={address.landmark} name="landmark" label="Landmark (optional)" placeholder="near railway station" />
+                <TextField
+                  onChange={onChangeHandler}
+                  value={address.name}
+                  name="name"
+                  id="outlined-required"
+                  label="Name"
+                  placeholder="John doe"
+                />
+                <TextField
+                  onChange={onChangeHandler}
+                  value={address.locality}
+                  name="locality"
+                  required
+                  id="outlined-required"
+                  label="Locality"
+                  placeholder="sector 10, xyz building vashi"
+                />
+                <TextField
+                  onChange={onChangeHandler}
+                  value={address.city}
+                  name="city"
+                  required
+                  id="outlined-required"
+                  label="City"
+                  placeholder="Navi Mumbai"
+                />
+                <TextField
+                  onChange={onChangeHandler}
+                  value={address.phoneNo}
+                  name="phoneNo"
+                  required
+                  id="outlined-required"
+                  label="Phone no."
+                  placeholder="99999 99999"
+                  type="number"
+                />
+                <TextField
+                  onChange={onChangeHandler}
+                  value={address.pincode}
+                  name="pincode"
+                  required
+                  id="outlined-required"
+                  label="Pincode"
+                  placeholder="400088"
+                  type="number"
+                />
+                <TextField
+                  onChange={onChangeHandler}
+                  value={address.landmark}
+                  name="landmark"
+                  label="Landmark (optional)"
+                  placeholder="near railway station"
+                />
                 <Button
                   className="save_address_btn"
                   variant="contained"
@@ -234,11 +330,20 @@ const Cart = ({ toggleCart, MenuDB, state, dispatch, cart }) => {
                       <div className="cart-product-price">₹ {item.price}</div>
                       <div className="cart-remove-and-quantity">
                         <div className="cart-product-quantity">
-                          <span className="decrease-cart-quantity" onClick={() => changeQty(item.id, item.qty - 1)}>
+                          <span
+                            className="decrease-cart-quantity"
+                            onClick={() => changeQty(item.id, item.qty - 1)}
+                          >
                             <RemoveIcon />
                           </span>
-                          <p className="cart-product-quantity-value"> {item.qty}</p>
-                          <span className="increase-cart-quantity" onClick={() => changeQty(item.id, item.qty + 1)}>
+                          <p className="cart-product-quantity-value">
+                            {" "}
+                            {item.qty}
+                          </p>
+                          <span
+                            className="increase-cart-quantity"
+                            onClick={() => changeQty(item.id, item.qty + 1)}
+                          >
                             <AddIcon />
                           </span>
                         </div>

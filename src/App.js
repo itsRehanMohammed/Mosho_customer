@@ -23,12 +23,22 @@ function App() {
   const [MenuDB, setMenuDB] = useState([]);
   useEffect(() => {
     // setSearchParams({});
+    const fetchSettings = async () => {
+      const response = await fetch(
+        "https://mosho.onrender.com/api/getsettings"
+      );
+      const data = await response.json();
+
+      localStorage.setItem("restaurantAvailable", data.restaurantAvailable);
+    };
+
     const fetchProducts = async () => {
       const response = await fetch("https://mosho.onrender.com/api/products");
       const data = await response.json();
       setMenuDB(data);
     };
     fetchProducts();
+    fetchSettings();
   }, []);
   const userData = async () => {
     const response = await fetch("https://mosho.onrender.com/api/me", {
@@ -61,11 +71,16 @@ function App() {
           <Route path="/" element={<Home MenuDB={MenuDB} />} />
           <Route path="/menu" element={<Menu MenuDB={MenuDB} />} />
           <Route
-            path="/menu/:foodName"
+            path="/menu/:foodID"
             element={
               <div>
                 {MenuDB.map((item) => (
-                  <Item key={item._id} item={item} state={state} dispatch={dispatch} />
+                  <Item
+                    key={item._id}
+                    item={item}
+                    state={state}
+                    dispatch={dispatch}
+                  />
                 ))}
               </div>
             }
@@ -75,7 +90,10 @@ function App() {
           <Route path="/login" element={<Login userData={userData} />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/orders" element={<Orders />} />
-          <Route path="/paymentsuccess" element={<PaymentSuccess cart={cart} />} />
+          <Route
+            path="/paymentsuccess"
+            element={<PaymentSuccess cart={cart} />}
+          />
         </Routes>
         {/* {courses_data.map((item) => {
           return (

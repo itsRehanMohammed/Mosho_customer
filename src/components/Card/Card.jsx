@@ -8,10 +8,11 @@ import TextField from "@mui/material/TextField";
 import { InputLabel, MenuItem, Select } from "@mui/material";
 
 const Card = ({ item }) => {
+  console.log(item);
   return (
     <>
       <div className="card">
-        <Link className="link" to={`/menu/${item.product_name}`}>
+        <Link className="link" to={`/menu/${item._id}`}>
           <div className="card-img">
             <img className="img" src={item.image} alt=""></img>
           </div>

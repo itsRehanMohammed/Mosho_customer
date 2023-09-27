@@ -9,11 +9,21 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 // import { useDispatch } from "react-redux";
 // import { add } from "../../Store/cartSlice";
 
-const Item = ({ name, desc, images, oldPrice, newPrice, id, item, state, dispatch }) => {
+const Item = ({
+  name,
+  desc,
+  images,
+  oldPrice,
+  newPrice,
+  id,
+  item,
+  state,
+  dispatch,
+}) => {
   const [Message, setMessage] = useState("");
   const [pincode, setpincode] = useState("");
   const [pincodeDB, setpincodeDB] = useState("");
-  let { foodName } = useParams();
+  let { foodID } = useParams();
   const navigate = useNavigate();
 
   const changeQty = (id, qty) => {
@@ -30,10 +40,11 @@ const Item = ({ name, desc, images, oldPrice, newPrice, id, item, state, dispatc
   };
   useEffect(() => {
     const fetchPincodes = async () => {
-      const response = await fetch("https://mosho.onrender.com/api/pincode");
+      const response = await fetch(
+        "https://mosho.onrender.com/api/getsettings"
+      );
       const data = await response.json();
-      console.log("data", data);
-      setpincodeDB(data);
+      setpincodeDB(data.pincodes);
     };
     fetchPincodes();
   }, []);
@@ -42,9 +53,10 @@ const Item = ({ name, desc, images, oldPrice, newPrice, id, item, state, dispatc
       setMessage(" ");
     }, 5000);
   }, [Message]);
+
   return (
     <>
-      {foodName === item.product_name && (
+      {foodID === item._id && (
         <div>
           <div className="Item">
             <div className="product-left">
@@ -71,9 +83,28 @@ const Item = ({ name, desc, images, oldPrice, newPrice, id, item, state, dispatc
               </div>
               <div className="check_location">
                 {/* <label htmlFor="pincode">Check Delivery Availability</label> */}
-                <input onChange={(e) => onChangeHandler(e)} value={pincode} required autoComplete="true" type="number" placeholder="Enter your pincode" className="pincode" id="pincode" name="pincode" />
+                <input
+                  onChange={(e) => onChangeHandler(e)}
+                  value={pincode}
+                  required
+                  autoComplete="true"
+                  type="number"
+                  placeholder="Enter your pincode"
+                  className="pincode"
+                  id="pincode"
+                  name="pincode"
+                />
 
-                {pincodeDB.includes(pincode) ? pincode.length > 5 && <p style={{ color: "green" }}>Delivery Available</p> : pincode.length > 5 && <p style={{ color: "orangered" }}>Sorry! Delivery services is Not Available at your location.</p>}
+                {pincodeDB.includes(parseInt(pincode))
+                  ? pincode.length > 5 && (
+                      <p style={{ color: "green" }}>Delivery Available</p>
+                    )
+                  : pincode.length > 5 && (
+                      <p style={{ color: "orangered" }}>
+                        Sorry! Delivery services is Not Available at your
+                        location.
+                      </p>
+                    )}
 
                 <p>{Message}</p>
               </div>
@@ -98,7 +129,8 @@ const Item = ({ name, desc, images, oldPrice, newPrice, id, item, state, dispatc
                   <div
                     className="product-page-add-to-cart"
                     onClick={() =>
-                      pincode.length > 5 && pincodeDB.includes(pincode)
+                      pincode.length > 5 &&
+                      pincodeDB.includes(parseInt(pincode))
                         ? localStorage.getItem("token")
                           ? dispatch({
                               type: "ADD_TO_CART",
