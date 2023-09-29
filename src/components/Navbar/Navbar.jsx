@@ -91,7 +91,7 @@ const Navbar = ({ user, role, MenuDB, state, dispatch, cart }) => {
                 }).map((item) => {
                   if (search.length > 0) {
                     return (
-                      <Link to={`/menu/${item.product_name}`} key={item.product_name} onClick={() => setsearchResults(false)}>
+                      <Link to={`/menu/${item._id}`} key={item._id} onClick={() => setsearchResults(false)}>
                         <div className="search_result">
                           <img src={item.image} alt="" />
                           <h4>{item.product_name.slice(0, 20)}...</h4>
